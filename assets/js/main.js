@@ -105,6 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitle: 'Gestão Petri',
       desc: 'Definição de metas e novos horizontes para o crescimento da EJ no Cerrado.',
       img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800'
+    },
+    {
+      date: '2026-04-11',
+      title: 'Curso de Princípios em Biologia Molecular: pipetagem e centrifugação',
+      subtitle: 'Ministrante e alunos da primeira turma',
+      desc: 'Primeira turma do curso prático de Princípios em Biologia Molecular, com atividades voltadas ao aprendizado de técnicas laboratoriais essenciais.',
+      img: 'assets/img/momentos/curso-petri-pipetagem.jpg'
     }
   ];
 
@@ -113,22 +120,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     // Sort by date descending (newest first)
-    const sortedMoments = momentsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const sortedMoments = [...momentsData].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    container.innerHTML = sortedMoments.map(moment => `
-      <div class="moment-card fade-in">
-        <img src="${moment.img}" alt="${moment.title}" class="moment-img">
-        <div class="moment-info">
-          <div class="moment-date">${new Date(moment.date).toLocaleDateString('pt-BR')}</div>
-          <h4 style="color: var(--primary); margin: 5px 0;">${moment.title}</h4>
-          <p style="font-weight: bold; font-size: 0.85rem; margin-bottom: 8px;">${moment.subtitle}</p>
-          <p class="moment-desc">${moment.desc}</p>
+    container.innerHTML = sortedMoments.map(moment => {
+      // Safe date display for YYYY-MM-DD to avoid timezone shifts
+      const dateParts = moment.date.split('-');
+      const formattedDate = dateParts.length === 3 ? `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}` : moment.date;
+
+      return `
+        <div class="moment-card fade-in">
+          <img src="${moment.img}" alt="${moment.title}" class="moment-img" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800'">
+          <div class="moment-info">
+            <div class="moment-date">${formattedDate}</div>
+            <h4 style="color: var(--primary); margin: 5px 0;">${moment.title}</h4>
+            <p style="font-weight: bold; font-size: 0.85rem; margin-bottom: 8px;">${moment.subtitle}</p>
+            <p class="moment-desc">${moment.desc}</p>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
-    // Observe newly created cards for fade-in animation
-    container.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // Re-trigger observer for dynamic content
+    setTimeout(() => {
+      container.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    }, 50);
   };
 
   renderMoments();
