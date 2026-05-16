@@ -160,6 +160,23 @@ img {
   opacity: 0.12;
   pointer-events: none;
   z-index: 1;
+  animation: watermarkFadeIn 2s ease-out forwards;
+}
+
+@keyframes watermarkFadeIn {
+  from { opacity: 0; transform: scale(0.9) translate(20px, 20px); }
+  to { opacity: 0.12; transform: scale(1) translate(0, 0); }
+}
+
+.about-watermark {
+  position: absolute;
+  left: -5%;
+  top: 10%;
+  width: 400px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+  animation: watermarkFadeIn 3s ease-out forwards;
 }
 
 .hero .container {
