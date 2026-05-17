@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Navbar Dynamic States
+  const header = document.querySelector('header');
+  const hero = document.querySelector('.hero, .page-hero');
+  
+  const updateNavbar = () => {
+    if (!hero) {
+      header.classList.add('navbar--scrolled');
+      header.classList.remove('navbar--transparent');
+      return;
+    }
+
+    if (window.scrollY > 50) {
+      header.classList.add('navbar--scrolled');
+      header.classList.remove('navbar--transparent');
+    } else {
+      header.classList.add('navbar--transparent');
+      header.classList.remove('navbar--scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', updateNavbar);
+  updateNavbar(); // Initial check
+
   // Mobile Menu Toggle
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinks = document.querySelector('.nav-links');

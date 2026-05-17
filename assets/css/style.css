@@ -608,11 +608,26 @@ header {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border-light);
+  padding: 15px 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid transparent;
+}
+
+/* Navbar States */
+header.navbar--transparent {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+header.navbar--scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 10px 0;
-  transition: 0.3s;
+  border-bottom-color: var(--border-light);
+  box-shadow: var(--shadow-sm);
 }
 
 .nav-container {
@@ -621,9 +636,25 @@ header {
   align-items: center;
 }
 
+/* Logo Switching */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
 .logo img {
   height: 75px;
+  transition: opacity 0.3s ease;
 }
+
+.logo .logo-white { display: none; }
+.logo .logo-color { display: block; }
+
+header.navbar--transparent .logo .logo-white { display: block; }
+header.navbar--transparent .logo .logo-color { display: none; }
+
+header.navbar--scrolled .logo .logo-white { display: none; }
+header.navbar--scrolled .logo .logo-color { display: block; }
 
 .nav-links {
   display: flex;
@@ -638,9 +669,61 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: color 0.3s ease;
 }
 
+/* Colors for Transparent State (Desktop) */
+@media (min-width: 769px) {
+  header.navbar--transparent .nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  header.navbar--transparent .nav-links a:hover {
+    color: white;
+    opacity: 1;
+  }
+
+  header.navbar--transparent .nav-links a .material-icons {
+    color: white;
+    opacity: 0.8;
+  }
+  
+  header.navbar--transparent .nav-links a.active {
+    color: white;
+    opacity: 1;
+  }
+  
+  header.navbar--transparent .nav-links a.active .material-icons {
+    opacity: 1;
+  }
+
+  /* CTA Button in Transparent State */
+  header.navbar--transparent .btn-gradient {
+    background: white;
+    color: var(--primary-darker) !important;
+  }
+  
+  header.navbar--transparent .btn-gradient svg {
+    fill: var(--primary-darker) !important;
+  }
+
+  header.navbar--transparent .btn-gradient:hover {
+    background: var(--bg-light);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  }
+}
+
+header.navbar--transparent .mobile-menu-btn {
+  color: white;
+}
+
+/* Specific Active/Hover Colors */
 .nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+}
+
+header.navbar--scrolled .nav-links a.active {
   color: var(--primary);
 }
 
@@ -648,6 +731,7 @@ header {
   display: none;
   cursor: pointer;
   color: var(--primary-darker);
+  transition: color 0.3s ease;
 }
 
 /* Footer */
@@ -803,6 +887,19 @@ footer {
                 opacity 0.4s ease, 
                 transform 0.4s ease,
                 padding 0.5s ease;
+  }
+
+  /* Force dark text in mobile menu regardless of header state */
+  .nav-links a {
+    color: var(--primary-darker);
+  }
+
+  .nav-links a .material-icons {
+    color: var(--primary-darker);
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
   }
 
   .nav-links.active {
