@@ -28,13 +28,13 @@
 @font-face {
   font-family: "Caracas";
   src: url("../fonts/Caracas.ttf") format("truetype");
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: "Croogla";
   src: url("../fonts/Croogla.ttf") format("truetype");
-  font-display: swap;
+  font-display: block;
 }
 
 /* Base Styles */

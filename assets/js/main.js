@@ -95,20 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // EDIT HERE to add new moments
   const momentsData = [
     {
-      date: '2023-09-15',
-      title: 'Fundação da Petri Júnior',
-      subtitle: 'Câmpus Gurupi',
-      desc: 'Marco inicial da nossa empresa júnior, unindo estudantes em prol da biotecnologia.',
-      img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800'
-    },
-    {
-      date: '2024-03-10',
-      title: 'Primeiro Diagnóstico',
-      subtitle: 'Consultoria de Alimentos',
-      desc: 'Visita técnica realizada em estabelecimento local para adequação sanitária.',
-      img: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?q=80&w=800'
-    },
-    {
       date: '2024-11-02',
       title: 'Equipe Petri Júnior no ETEJ',
       subtitle: 'Primeiro ETEJ (2024)',
@@ -121,13 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitle: 'Integração MEJ Regional',
       desc: 'Encontro das Equipes das Empresas Juniores de Gurupi: CAP Engenharia (IFTO), ATAC (UFT) e Petri Junior (UFT).',
       img: 'assets/img/momentos/foto-to-junior.jpg'
-    },
-    {
-      date: '2025-02-15',
-      title: 'Planejamento 2025',
-      subtitle: 'Gestão Petri',
-      desc: 'Definição de metas e novos horizontes para o crescimento da EJ no Cerrado.',
-      img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800'
     },
     {
       date: '2026-04-11',
